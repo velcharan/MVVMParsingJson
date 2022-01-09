@@ -14,6 +14,7 @@ class CourseViewModel {
     var vc: ViewController?
     var course_arr = [MyCourse]()
     var faq_arr = [Faq]()
+    var string = [String]()
 
      func CourseServiceCall() {
         AF.request("http://demo7953690.mockable.io/test").response { response in
@@ -54,12 +55,15 @@ class CourseViewModel {
                     
                     for faq in faqResponse.faq {
                         self.faq_arr.append(faq)
+                        self.string.append(faq.question ?? "")
+                        self.string[0]
                     }
                     
                     DispatchQueue.main.async {
                         self.vc?.modelTableView.reloadData()
                         self.vc?.labelOne.text = "\(faqResponse.status!)"
                         self.vc?.labelTwo.text = faqResponse.base_url
+
                     }
                 }catch {
                     dump(error.localizedDescription)
