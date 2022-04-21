@@ -49,6 +49,7 @@ class CourseViewModel {
         AF.request("http://demo7953690.mockable.io/test").response { response in
             if let data = response.data {
                 do{
+                    //MARK: If model type is array use array model like [HomeFaq].self
                     let faqResponse = try JSONDecoder().decode(HomeFaq.self, from: data)
                     print(faqResponse.base_url)
                     print(faqResponse.status)
